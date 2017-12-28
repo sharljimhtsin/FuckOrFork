@@ -10,6 +10,10 @@ def index(request):
     return HttpResponse("OK")
 
 
+def single_post(request):
+    return HttpResponse("single OK")
+
+
 def get_variable_by_key(key):
     obj = None
     try:
