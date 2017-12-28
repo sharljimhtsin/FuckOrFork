@@ -58,7 +58,7 @@ class TypechoFields(models.Model):
     type = models.CharField(max_length=8, blank=True, null=True)
     str_value = models.TextField(blank=True, null=True)
     int_value = models.IntegerField(blank=True, null=True)
-    float_value = models.FloatField(blank=True, null=True)
+    float_value = models.TextField(blank=True, null=True)  # This field type is a guess.
 
     class Meta:
         managed = False
@@ -93,7 +93,7 @@ class TypechoOptions(models.Model):
 
 
 class TypechoRelationships(models.Model):
-    cid = models.IntegerField(primary_key=True)
+    cid = models.IntegerField()
     mid = models.IntegerField()
 
     class Meta:
