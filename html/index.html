@@ -1,0 +1,11 @@
+<?php $this->need('header.php'); ?>
+    <div class='content span-16'>
+        <?php while($this->next()): ?>
+   			<div class="post" id="post-0">
+                <h1><a href="<?php $this->permalink() ?>" rel="bookmark" title="<?php $this->title() ?>"><?php $this->title() ?></a></h1>       
+                <?php $this->content('阅读剩余部分...'); ?>								<div class="postmeta">					<?php _e('标签'); ?>: <?php $this->tags(', ', true, '无'); ?><br/><br/>					<?php _e('发表于：'); ?><?php $this->date('Y年n月d日'); ?><br/><br/>					<?php _e('归类于：'); ?><?php $this->category(','); ?> 且 					<a href="<?php $this->permalink() ?>#comments"><?php $this->commentsNum('无评论', '1个留言', '%d 个留言'); ?></a>				</div>
+			</div>
+		<?php endwhile; ?>		<?php $this->pageNav(); ?>
+    </div>	
+	<?php $this->need('sidebar.php'); ?>
+<?php $this->need('footer.php'); ?>

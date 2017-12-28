@@ -1,0 +1,132 @@
+<div class='sidebar span-8 last'>
+
+		<div class="widget">
+			<div class='sidebarboxtop'><img src="<?php $this->options->themeUrl('images/sidebartop.gif'); ?>" alt="sidebartop" /></div>
+			<div class='sidebarbox'>
+			<h3><?php _e('订阅FSF'); ?></h3>
+			<script type="text/javascript">
+			var fsf_widget_size = "normal";
+			var fsf_associate_id = "2442";
+			</script>
+			<script type="text/javascript" src="https://www.fsf.org/graphics/widget/global/widget.js"></script>
+			</div>
+			<div class='sidebarboxbottom'><img src="<?php $this->options->themeUrl('images/sidebarbottom.gif'); ?>" alt="sidebarbottom" /></div>
+		</div>
+
+		<div class="widget">
+			<div class='sidebarboxtop'><img src="<?php $this->options->themeUrl('images/sidebartop.gif'); ?>" alt="sidebartop" /></div>
+			<div class='sidebarbox'>
+			<h3><?php _e('博主微博'); ?></h3>
+			</div>
+			<iframe width="308" height="552" class="share_self"  frameborder="0" scrolling="no" src="https://widget.weibo.com/weiboshow/index.php?language=zh_cn&width=308&height=552&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=2214221394&verifier=5b5062a1&colors=E1ECFE,E1ECFE,666666,0082cb,ecfbfd&dpc=1"></iframe>
+			<!-- <iframe frameborder="0" scrolling="no" src="http://show.v.t.qq.com/index.php?c=show&a=index&n=xiazhengxin&w=0&h=552&fl=2&l=30&o=23&co=4&cs=E1ECFE_E1ECFE_090319_E1ECFE" width="100%" height="552"></iframe> -->
+			<div class='sidebarboxbottom'><img src="<?php $this->options->themeUrl('images/sidebarbottom.gif'); ?>" alt="sidebarbottom" /></div>
+		</div>
+		
+        <?php if (empty($this->options->sidebarBlock) || in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
+	    <div class="widget">
+			<div class='sidebarboxtop'><img src="<?php $this->options->themeUrl('images/sidebartop.gif'); ?>" alt="sidebartop" /></div>
+			<div class='sidebarbox'>
+			<h3><?php _e('最新文章'); ?></h3>
+            <ul>
+                <?php $this->widget('Widget_Contents_Post_Recent')
+                ->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
+            </ul>
+			</div>
+			<div class='sidebarboxbottom'><img src="<?php $this->options->themeUrl('images/sidebarbottom.gif'); ?>" alt="sidebarbottom" /></div>
+	    </div>
+        <?php endif; ?>
+		
+		<?php if (empty($this->options->sidebarBlock) || in_array('ShowRecentComments', $this->options->sidebarBlock)): ?>
+	    <div class="widget">
+			<div class='sidebarboxtop'><img src="<?php $this->options->themeUrl('images/sidebartop.gif'); ?>" alt="sidebartop" /></div>
+			<div class='sidebarbox'>
+			<h3><?php _e('最新留言'); ?></h3>
+            <ul>
+            <?php $this->widget('Widget_Comments_Recent')->to($comments); ?>
+            <?php while($comments->next()): ?>
+                <li><a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?></a>: <?php $comments->excerpt(50, '...'); ?></li>
+            <?php endwhile; ?>
+            </ul>
+			</div>
+			<div class='sidebarboxbottom'><img src="<?php $this->options->themeUrl('images/sidebarbottom.gif'); ?>" alt="sidebarbottom" /></div>
+	    </div>
+        <?php endif; ?>
+		
+		<?php if (empty($this->options->sidebarBlock) || in_array('ShowCategory', $this->options->sidebarBlock)): ?>
+        <div class="widget">
+			<div class='sidebarboxtop'><img src="<?php $this->options->themeUrl('images/sidebartop.gif'); ?>" alt="sidebartop" /></div>
+			<div class='sidebarbox'>
+			<h3><?php _e('文章分类'); ?></h3>
+            <ul>
+                <?php $this->widget('Widget_Metas_Category_List')
+                ->parse('<li><a href="{permalink}">{name}</a> ({count})</li>'); ?>
+            </ul>
+			</div>
+			<div class='sidebarboxbottom'><img src="<?php $this->options->themeUrl('images/sidebarbottom.gif'); ?>" alt="sidebarbottom" /></div>
+		</div>
+        <?php endif; ?>
+		
+		<?php if (empty($this->options->sidebarBlock) || in_array('ShowArchive', $this->options->sidebarBlock)): ?>
+        <div class="widget">
+			<div class='sidebarboxtop'><img src="<?php $this->options->themeUrl('images/sidebartop.gif'); ?>" alt="sidebartop" /></div>
+			<div class='sidebarbox'>
+			<h3><?php _e('文章归档'); ?></h3>
+            <ul>
+                <?php $this->widget('Widget_Contents_Post_Date', 'type=month&format=Y年n月')->parse('<li><a href="{permalink}">{date}</a></li>'); ?>
+            </ul>
+			</div>
+			<div class='sidebarboxbottom'><img src="<?php $this->options->themeUrl('images/sidebarbottom.gif'); ?>" alt="sidebarbottom" /></div>
+		</div>
+        <?php endif; ?>
+		
+		<div class="widget">
+			<div class='sidebarboxtop'><img src="<?php $this->options->themeUrl('images/sidebartop.gif'); ?>" alt="sidebartop" /></div>
+			<div class='sidebarbox'>
+			<h3><?php _e('友情链接'); ?></h3>
+            <ul>
+				<li><a href="http://yanghao.org">杨浩的博客</a></li>
+				<li><a href="http://menface.net">蒙面人生</a></li>
+				<li><a href="http://www.ningyi.me/">宁怡</a></li>
+				<li><a href="https://liuwei.co/">六维空间</a></li>
+				<li><a href="http://hcave.com/">柠檬日记</a></li>
+				<!-- <li><a href="http://www.zhaorong.me">赵榕笔记</a></li> -->
+            </ul>
+		</div>
+			<div class='sidebarboxbottom'><img src="<?php $this->options->themeUrl('images/sidebarbottom.gif'); ?>" alt="sidebarbottom" /></div>
+		</div>
+
+		<div class="widget">
+			<div class='sidebarboxtop'><img src="<?php $this->options->themeUrl('images/sidebartop.gif'); ?>" alt="sidebartop" /></div>
+			<div class='sidebarbox'>
+			<h3><?php _e('我的相关站点'); ?></h3>
+            <ul>
+				<li><a href="http://bbs.xiazhengxin.name">小鑫论坛(关站中)</a></li>
+				<li><a href="http://linux.xiazhengxin.name">小鑫的GNU/Linux学习网站</a></li>
+				<li><a href="http://wikileaks.xiazhengxin.name">小鑫的维基泄密站点</a></li>
+            </ul>
+			</div>
+			<div class='sidebarboxbottom'><img src="<?php $this->options->themeUrl('images/sidebarbottom.gif'); ?>" alt="sidebarbottom" /></div>
+		</div>
+		
+		<?php if (empty($this->options->sidebarBlock) || in_array('ShowOther', $this->options->sidebarBlock)): ?>
+		<div class="widget">
+			<div class='sidebarboxtop'><img src="<?php $this->options->themeUrl('images/sidebartop.gif'); ?>" alt="sidebartop" /></div>
+			<div class='sidebarbox'>
+			<h3><?php _e('其它'); ?></h3>
+            <ul>
+                <?php if($this->user->hasLogin()): ?>
+			<li class="last"><a href="<?php $this->options->adminUrl(); ?>"><?php _e('进入后台'); ?> (<?php $this->user->screenName(); ?>)</a></li>
+			<li><a href="<?php $this->options->logoutUrl(); ?>"><?php _e('退出'); ?></a></li>
+                <?php else: ?>
+                	<li class="last"><a href="<?php $this->options->adminUrl('login.php'); ?>"><?php _e('登录'); ?></a></li>
+                <?php endif; ?>
+                <li><a href="http://validator.w3.org/check/referer">Valid XHTML</a></li>
+                <li><a href="http://www.typecho.org">Typecho</a></li>
+            </ul>
+			</div>
+			<div class='sidebarboxbottom'><img src="<?php $this->options->themeUrl('images/sidebarbottom.gif'); ?>" alt="sidebarbottom" /></div>
+		</div>
+        <?php endif; ?>
+		
+</div>

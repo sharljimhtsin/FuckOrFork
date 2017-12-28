@@ -1,0 +1,67 @@
+<?php $this->comments()->to($comments); ?>
+<?php if ($comments->have()): ?>
+
+    <h3 id="comments">访客的留言</h3>
+
+    <ol class="commentlist">
+
+        <?php $comments->listComments(); ?>
+
+    </ol>
+
+    <div style="clear:both"></div>
+
+    <div class="commentsnavigation">
+
+        <div class="alignright"><?php $comments->pageNav(); ?></div>
+
+    </div>
+
+    <div style="clear:both"></div>
+
+<?php endif; ?>
+
+<?php if ($this->allow('comment')): ?>
+
+    <div id="<?php $this->respondId(); ?>">
+
+        <h3><?php _e('写下你的评论'); ?> &raquo;</h3>
+
+        <div class="cancel-comment-reply">
+
+            <small><?php $comments->cancelReply(); ?></small>
+
+        </div>
+
+        <form action="<?php $this->commentUrl() ?>" method="post" id="commentform">
+
+            <?php if ($this->user->hasLogin()): ?>
+
+                <p>以<a href="<?php $this->options->profileUrl(); ?>"><?php $this->user->screenName(); ?></a>身份登录. <a href="<?php $this->options->logoutUrl(); ?>" ><?php _e('退出'); ?> &raquo;</a></p>
+
+            <?php else : ?>
+
+                <p><input type="text" name="author" id="author" value="<?php $this->remember('author'); ?>" size="22" tabindex="1" />
+
+                    <label for="author"><small><?php _e('姓名'); ?></small></label></p>
+
+                <p><input type="text" name="mail" id="mail" value="<?php $this->remember('mail'); ?>" size="22" tabindex="2" />
+
+                    <label for="email"><small><?php _e('邮箱'); ?><?php if ($this->options->commentsRequireMail): ?>*<?php endif; ?></small></label></p>
+
+                <p><input type="text" name="url" id="url" value="<?php $this->remember('url'); ?>" size="22" tabindex="3" />
+
+                    <label for="url"><small><?php _e('个人网站'); ?><?php if ($this->options->commentsRequireURL): ?>*<?php endif; ?></small></label></p>
+
+            <?php endif; ?>
+
+            <p><textarea name="text" id="comment" cols="65" rows="10" tabindex="4"><?php $this->remember('text'); ?></textarea></p>
+	<?php wpimgcode_Plugin::show_code(); ?>
+            <p><input name="submit" type="submit" id="submit" tabindex="5" value="<?php _e('提交评论'); ?>" /></p>
+
+        </form>
+    </div>
+
+<?php else: ?>
+    <p class="nocomments"><?php _e('评论已关闭'); ?></p>
+<?php endif; ?>

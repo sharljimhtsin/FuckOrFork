@@ -1,0 +1,11 @@
+<?php $this->need('header.php'); ?>
+    <div class='content span-16'>
+   			<div class="post"' id="post-0">
+                <h1><?php $this->date('y-n-j'); ?> <a href="<?php $this->permalink() ?>" rel="bookmark" title="<?php $this->title() ?>"><?php $this->title() ?></a></h1>       				<?php $this->content(); ?>
+                <div class="postmeta">					<?php _e('标签'); ?>: <?php $this->tags(', ', true, '无'); ?><br/><br/>					<?php _e('归类于：'); ?><?php $this->category(','); ?>				</div>
+            <div class="navigation"></div>
+			<?php $this->need('comments.php'); ?>			
+			</div>
+    </div>
+	<?php $this->need('sidebar.php'); ?>
+<?php $this->need('footer.php'); ?>

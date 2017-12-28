@@ -7,7 +7,7 @@ from django.forms.models import model_to_dict
 
 # Create your views here.
 def index(request):
-    return HttpResponse("OK")
+    return render(request, "404.html", {})
 
 
 def single_post(request):

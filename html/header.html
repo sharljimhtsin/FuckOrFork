@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head profile="http://gmpg.org/xfn/11">
+<title><?php $this->options->title(); ?> &raquo; <?php $this->is('index') ? $this->options->description() : $this->archiveTitle(' &raquo; ', '', '') ?></title>
+<meta name="resource-type" content="document" />
+<meta http-equiv="Content-Type" content="text/html; charset=<?php $this->options->charset(); ?>" />
+<meta http-equiv="content-language" content="zh-cn" />
+<meta http-equiv="author" content="<?php $this->options->title(); ?>" />
+<meta http-equiv="contact" content="<?php echo '@'; ?>" />
+<meta name="copyright" content="Copyright (c)<?php echo (date('Y') != '2008' ? '2008-' : '') . date('Y');?> <?php $this->options->title(); ?>. Some Rights Reserved." />
+<meta name="keywords" content="<?php $this->options->title(); ?>,<?php $this->options->title(); ?>博客,博客,日记,个人,个人博客" />
+<meta name="notice-zh" content="本博客所表达之观点及看法均为本博主之个人观点与看法，并不与包括本博主雇主在内的其他人有直接或间接的关系." />
+<meta name="notice-en" content="The views and opinions expressed here are mine and don't reflect the ones from my employer." />
+<?php if($this->is('index') || $this->is('page')) { ?>
+<meta name="googlebot" content="index,noarchive,follow,noodp" />
+<meta name="robots" content="all,index,follow" />
+<meta name="msnbot" content="all,index,follow" />
+<?php } else { ?>
+<meta name="googlebot" content="noindex,noarchive,follow,noodp" />
+<meta name="robots" content="noindex,follow" />
+<meta name="msnbot" content="noindex,follow" />
+<?php }?>
+<?php $this->header(); ?>
+<link rel="Shortcut Icon" href="<?php $this->options->themeUrl('favicon.ico'); ?>" type="image/x-icon" />
+<link rel="stylesheet" href="<?php $this->options->themeUrl('css/screen.css'); ?>" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="<?php $this->options->themeUrl('css/blueprint.css'); ?>" type="text/css" media="print" />
+<link rel="alternate" type="application/rss+xml" title="<?php $this->options->title(); ?> RSS Feed" href="<?php $this->options->feedUrl(); ?>" />
+<link rel="alternate" type="application/atom+xml" title="<?php $this->options->title(); ?> Atom Feed" href="#" />
+</head>
+<body>
+<div class="wrapper">
+<div class='container'>
+  
+	<div class='headermenu span-24'>
+        <ul>
+        <li class="first"<?php if (!$this->is('page')) { echo ' id="firstcurrent"'; } ?>><a href="<?php $this->options->siteurl(); ?>" title="Home">Home</a></li>
+		<?php
+		$this->widget('Widget_Contents_Page_List')->to($pages);
+		$i = $pages->giveMeLength();//add this method to file \typecho\var\Typecho\Widget.php
+		$j = 1;
+		?>
+		<?php while($pages->next()): ?>
+		<li<?php
+			if ($this->is('page', $pages->slug) && $i != $j) {
+				echo ' id="current"';
+			}
+			if ($this->is('page', $pages->slug) && $i == $j) {
+				echo ' id="lastcurrent"';
+			}
+			if ($i == $j) {
+				echo ' class="last"';
+			}
+			$j++;
+		?>><a href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a></li>
+		<?php endwhile; ?>
+        </ul>
+	</div>
+  
+    <div class='header span-24'>
+        <div class="alignright" style="width:310px">
+			<div id="searchbox">
+            <form method="get" id="searchform" action="<?php $this->options->siteUrl(); ?>/">
+			<input type="text" name="s" id="s" class="search_input" value="<?php _e('搜索'); ?>" />
+			<input type="image" src="<?php $this->options->themeUrl('images/transparent.gif'); ?>" id="searchsubmit" />
+			</form>
+            </div>
+	        <a class="menubookmark" href="http://www.addthis.com/bookmark.php" title="Bookmark and Share"></a>
+            <a class="menufeed" href="<?php $this->options->feedUrl(); ?>" title="Subscribe Feed"></a>
+        </div>
+        <a class="menuhome" href="<?php $this->options->siteUrl(); ?>" title="Home"></a>&nbsp;
+        <span class="blogtitle"><a href="<?php $this->options->siteUrl(); ?>" title="Home"><?php $this->options->title(); ?></a></span>
+    </div>
+    
+    <div class='msgbartop span-24'><img src="<?php $this->options->themeUrl('images/msgbartop.gif'); ?>" alt="msgbartop" /></div>
+    <div class='msgbar span-24'>
+		<?php $this->options->description() ?>
+    </div>
+    <div class='msgbarbottom span-24'><img src="<?php $this->options->themeUrl('images/msgbarbottom.gif'); ?>" alt="msgbarbottom" /></div>
