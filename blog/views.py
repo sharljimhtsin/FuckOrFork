@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Topic, Comment, Variable
+from .models import TypechoComments, TypechoContents, TypechoFields, TypechoMetas, TypechoOptions, TypechoRelationships, \
+    TypechoUsers
 from django.forms.models import model_to_dict
 
 
@@ -12,14 +13,14 @@ def index(request):
 def get_variable_by_key(key):
     obj = None
     try:
-        obj = Variable.objects.get(keyName=key)
-    except Variable.DoesNotExist:
+        obj = TypechoOptions.objects.get(name=key)
+    except TypechoOptions.DoesNotExist:
         obj = None
     if obj is None:
         return None
     else:
         dict_obj = model_to_dict(obj)
-        value = dict_obj['keyValue']
+        value = dict_obj['value']
         if value.strip() == '':
             return None
         else:
