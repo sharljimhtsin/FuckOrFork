@@ -93,13 +93,15 @@ class TypechoOptions(models.Model):
 
 
 class TypechoRelationships(models.Model):
+    rid = models.AutoField(primary_key=True)
     cid = models.IntegerField()
     mid = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'typecho_relationships'
-        unique_together = (('cid', 'mid'),)
+        unique_together = ('cid', 'mid')
+        index_together = ['cid', 'mid']
 
 
 class TypechoUsers(models.Model):

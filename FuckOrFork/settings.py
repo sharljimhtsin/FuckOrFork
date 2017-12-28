@@ -74,9 +74,9 @@ WSGI_APPLICATION = 'FuckOrFork.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'blog.db'),
+        'NAME': os.path.join(BASE_DIR, 'blog_with_id.db'),
     },
-    'defaultdefault': {
+    'typecho': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'fof',
         'USER': 'root',
